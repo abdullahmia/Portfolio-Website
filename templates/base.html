@@ -1,0 +1,83 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}
+
+    {% endblock %}</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎯</text></svg>"
+    />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <link href="https://kit-pro.fontawesome.com/releases/v5.15.3/css/pro.min.css" rel="stylesheet">
+  </head>
+  <body>
+
+  {% block content %}
+
+  {% endblock %}
+
+
+
+    <script src="{% static 'jquery.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="{% static 'particles.js' %}"></script>
+    <script>
+      const toggle = document.getElementById("toggle");
+      const btn = document.getElementById("btn");
+      const links = document.querySelectorAll(".links");
+
+      btn.addEventListener("click", (e) => {
+        toggle.classList.toggle("active");
+      });
+      links.forEach((e) => {
+        e.addEventListener("click", () => {
+        toggle.classList.toggle("active");
+        })
+      });
+    </script>
+
+
+    <script>
+
+      $(document).ready(function(){
+        $(".resume_item").slice(0, 4).show();
+
+        $("#loadMore").on('click', function(e){
+          e.preventDefault();
+          $(".resume_item:hidden").slice(0, 2).slideDown();
+
+          if($(".resume_item:hidden").length == 0){
+            $("loadMore").fadeOut('slow');
+          }
+          $('html, body').animate({
+            scrollTop: $(this).offset().top
+          }, 1500);
+
+        })
+
+        $('.loadMore').click(function () {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 600);
+            return false;
+        });
+
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+                $('.totop a').fadeIn();
+            } else {
+                $('.totop a').fadeOut();
+            }
+        });
+
+    });
+
+
+    </script>
+  </body>
+</html>

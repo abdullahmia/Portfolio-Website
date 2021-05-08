@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Abdullah Mia | Web Application Developer
+{% endblock %}
+
+
+{% block content %}
+    <section id="main" class="center">
+        <div id="particles-js"></div>
+        <div class="user_info">
+            <h1 class="user_name">{{ intro.title }}</h1>
+            <p>{{ intro.sub_title }}</p>
+            <a href="#About" class="btn">About Me</a>
+        </div>
+
+        {% if intro.image %}
+            <div class="user_img">
+                <img src="{{ intro.image.url }}" alt=""/>
+            </div>
+        {% endif %}
+
+
+    </section>
+
+    <!-- about -->
+    <section class="about center" id="About">
+        <div class="center">
+            <h1 class="about_heading">About</h1>
+            <p>
+                Hey, my name is Abdullah Mia. I love to creating awesome web application using Html, Css, Js, Python&Django. I'm also a Wordpress & Woocommerce Developer
+            </p>
+        </div>
+        <img src="{{ intro.image.url }}%}" alt="">
+    </section>
+
+
+    <section class="skills center" id="Skills">
+        <p class="skill_head">Skills</p>
+        <div class="skill_box center">
+
+            {% if skills %}
+                {% for skill in skills %}
+                    <div class="box">
+                        <i class="{{ skill.icon }} fa-4x"></i>
+                        <p>{{ skill.name }}</p>
+                    </div>
+                {% endfor %}
+
+            {% else %}
+                <h3>No Skills.........</h3>
+            {% endif %}
+
+
+        </div>
+    </section>
+
+    <section class="projects center" id="Projects">
+        <h1 class="project_heading">Projects</h1>
+        <div class="container center">
+
+            {% if projects %}
+                {% for project in projects %}
+                    <div class="resume_item">
+                        <div class="main_box center">
+                            <div class="icon center">
+                               <img style="width: 177px; height: 166px" src="{{ project.image.url }}">
+                            </div>
+                            <div class="box">
+                                <h1>{{ project.title }}</h1>
+                                <p>
+                                    {{ project.short_des }}
+                                </p>
+                                <div class="links">
+
+                                    {% if project.github_link %}
+                                        <a
+                                                href="{{ project.github_link }}"
+                                                target="_blank_"
+                                        >Github Repo<i class="fas fa-arrow-right"></i
+                                        ></a>
+                                    {% endif %}
+
+                                {% if project.live_dmeo_link %}
+                                        <a
+                                                href="{{ project.live_dmeo_link }}"
+                                                target="_blank_"
+                                        >Live Demo<i class="fas fa-arrow-right"></i
+                                        ></a>
+                                    {% endif %}
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            {% else %}
+                <h3>NO Project Here....</h3>
+            {% endif %}
+
+            <button id="loadMore" class="glow-on-hover" type="button">Load More</button>
+
+        </div>
+    </section>
+
+    <!-- footer -->
+    <footer class="center">
+        <h1>Stay Connected</h1>
+
+        <div class="social_media_icons">
+
+            {% for socialaccount in socialaccounts %}
+                <a href="{{ socialaccount.link }}" target="_blank_"
+                ><i class="{{ socialaccount.icon }}"></i
+                ></a>
+            {% endfor %}
+
+
+        </div>
+    </footer>
+
+    <!-- Toggle -->
+    <div class="toggle center active" id="toggle">
+        <div class="box center">
+            <a href="#main" class="links center">
+                <i class="fas fa-home"></i>
+                <p>Home</p>
+            </a>
+        </div>
+        <div class="box center">
+            <a href="#About" class="links center">
+                <i class="fas fa-address-card"></i>
+                <p>About</p>
+            </a>
+            <input type="checkbox" name="" id="btn"/>
+            <a href="#Skills" class="links center">
+                <i class="fas fa-sliders-h"></i>
+                <p>Skills</p>
+            </a>
+        </div>
+        <div class="box">
+            <a href="#Projects" class=" links center">
+                <i class="fas fa-tasks"></i>
+                <p>Projects</p>
+            </a>
+        </div>
+    </div>
+
+{% endblock %}
